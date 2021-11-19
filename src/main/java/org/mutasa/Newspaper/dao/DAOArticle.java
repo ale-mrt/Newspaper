@@ -126,4 +126,17 @@ public class DAOArticle {
 		//if the read method returned null then a will be null; if the read method was succesfull a must be the article that matches the id passed as input
 		return a;
 	}
+	
+	/**
+	 * gets all the articles from a user, identified with his/her id
+	 * @param id, the user's id
+	 * @return the list of all articles typed by a user
+	 */
+	public List<Article> getUserArticles(int id){
+		List<Article> response = new ArrayList<>();
+		
+		response = read("select articles.* from articles join users on articles.idAuthor = users.id where users.id = ?", id+"");
+		
+		return response;
+	}
 }

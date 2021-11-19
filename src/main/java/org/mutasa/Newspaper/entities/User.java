@@ -1,5 +1,7 @@
 package org.mutasa.Newspaper.entities;
 
+import java.sql.Date;
+
 import com.generation.utility.entities.Entity;
 
 public class User extends Entity{
@@ -9,7 +11,8 @@ public class User extends Entity{
 	private String email;
 	private String imgURL;
 	private String tagline;
-	private boolean isAuthor;
+	private boolean author;
+	private Date registerDate;
 	
 	public String getName() {
 		return name;
@@ -47,10 +50,22 @@ public class User extends Entity{
 	public void setTagline(String tagline) {
 		this.tagline = tagline;
 	}
-	public boolean isAuthor() {
-		return isAuthor;
+	public boolean getAuthor() {
+		return author;
 	}
 	public void setAuthor(boolean isAuthor) {
-		this.isAuthor = isAuthor;
+		this.author = isAuthor;
 	}
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", imgURL=" + imgURL + ", tagline=" + tagline + ", isAuthor=" + author + "]\n\n";
+	}
+	
 }

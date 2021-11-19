@@ -55,4 +55,10 @@ public class Article extends Entity{
 	public void setIdAuthor(int idAuthor) {
 		this.idAuthor = idAuthor;
 	}
+	
+	@Override
+	public String toString() {
+		return "Article [title=" + title + ", text=" + text + ", tags=" + tags + ", imgURL=" + imgURL + ", date=" + date
+				+ ", likes=" + likes + ", idAuthor=" + idAuthor + "]\n\n";
+	}
 }

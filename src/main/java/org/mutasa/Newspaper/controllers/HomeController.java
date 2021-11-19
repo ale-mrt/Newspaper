@@ -1,12 +1,13 @@
 package org.mutasa.Newspaper.controllers;
 
 import org.mutasa.Newspaper.dao.*;
+import org.mutasa.Newspaper.entities.Article;
+import org.mutasa.Newspaper.entities.Comment;
+import org.mutasa.Newspaper.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.google.gson.Gson;
 
 /**
  * The HomeController class is what the user sees when he/she contacts the website
@@ -26,27 +27,7 @@ public class HomeController {
 	 * @return home.html
 	 */
 	@GetMapping("/")
-	public String emptyHome() {
-		return "/home.html";
-	}
-	
-	/**
-	 * when the user types www.domain.com/home he will be redirected to the home.html file
-	 * @return home.html
-	 */
-	@GetMapping("/home")
 	public String home() {
-		
-		return "/home.html";
-	}
-	
-	/**
-	 * when the user types www.domain.com/home.html he will be redirected to the home.html file
-	 * @return home.html
-	 */
-	@GetMapping("/home")
-	public String HTMLjome() {
-		
 		return "/home.html";
 	}
 	
@@ -57,9 +38,13 @@ public class HomeController {
 	@GetMapping("/users")
 	@ResponseBody
 	public String getUsers() {
-		Gson gson = new Gson();
+		String response = "";
 		
-		return gson.toJson(du.getUsers());
+		for(User u: du.getUsers()) {
+			response += u.toString();
+		}
+		
+		return response;
 	}
 	
 	/**
@@ -69,9 +54,13 @@ public class HomeController {
 	@GetMapping("/articles")
 	@ResponseBody
 	public String getArticles() {
-		Gson gson = new Gson();
+		String response = "";
 		
-		return gson.toJson(da.getArticles());
+		for(Article a: da.getArticles()) {
+			response += a.toString();
+		}
+		
+		return response;
 	}
 	
 	/**
@@ -81,8 +70,12 @@ public class HomeController {
 	@GetMapping("/comments")
 	@ResponseBody
 	public String getComments() {
-		Gson gson = new Gson();
+		String response = "";
 		
-		return gson.toJson(dc.getComments());
+		for(Comment c: dc.getComments()) {
+			response += c.toString();
+		}
+		
+		return response;
 	}
 }

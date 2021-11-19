@@ -41,5 +41,9 @@ public class Comment extends Entity{
 	public void setIdArticle(int idArticle) {
 		this.idArticle = idArticle;
 	}
-	
+	@Override
+	public String toString() {
+		return "Comment [text=" + text + ", date=" + date + ", likes=" + likes + ", idAuthor=" + idAuthor
+				+ ", idArticle=" + idArticle + "]\n\n";
+	}
 }

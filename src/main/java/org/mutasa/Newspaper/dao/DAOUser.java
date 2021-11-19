@@ -34,7 +34,7 @@ public class DAOUser {
 		//insert query with wildcards
 		String query = "insert into users(name, username, password, email, imgURL, tagline, isAuthor) values (?, ?, ?, ?, ?, ?, ?)";
 		//using db.update() to insert the user u into the database
-		response = db.update(query, u.getName(), u.getUsername(), u.getPassword(), u.getEmail(), u.getImgURL(), u.getTagline(), u.isAuthor()+"");
+		response = db.update(query, u.getName(), u.getUsername(), u.getPassword(), u.getEmail(), u.getImgURL(), u.getTagline(), u.getAuthor()+"");
 		
 		return response;
 	}
@@ -71,7 +71,7 @@ public class DAOUser {
 		//update query with wildcards: it will modify the content of a row in the users table where the id int the id column matches the id of the user
 		String query = "update users set name = ?, username = ?, password = ?, email = ?, imgURL = ?, tagline = ?, isauthor = ? where id = ?";
 		//using db.update() to update the article value
-		response = db.update(query, u.getName(), u.getUsername(), u.getPassword(), u.getEmail(), u.getImgURL(), u.getTagline(), u.isAuthor()+"", u.getId()+"");
+		response = db.update(query, u.getName(), u.getUsername(), u.getPassword(), u.getEmail(), u.getImgURL(), u.getTagline(), u.getAuthor()+"", u.getId()+"");
 		
 		return response;
 	}
@@ -123,19 +123,17 @@ public class DAOUser {
 	}
 	
 	/**
-	 * checks if the username and the password match an entry in the database
-	 * @param username
-	 * @param password
-	 * @return a boolean value: if the user exists returns true, if the user doesn't exist returns false
+	 * getUserByUsernamePassword() returns a username/password combination
+	 * @param username/password of the user
+	 * @return the user with the matching username/password combination
 	 */
-	public boolean checkUserLogin(String username, String password) {
+	public User getUserByUsernamePassword(String username, String password){
 		User u = read("select * from users where username = ? and password = ?", username, password).get(0);
 		
 		if(u == null) {
-			return false;
+			return null;
 		}else {
-			return true;
+			return u;
 		}
-		
 	}
 }
